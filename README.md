@@ -54,3 +54,16 @@ Porteur	wearer@example.com	wearer123
 Médecin	doctor@example.com	doctor123
 Responsable	supervisor@example.com	supervisor123
 API docs : http://localhost:8000/docs
+
+Exemple provisionning user : 
+python3 tools/provision_user.py \                  
+        --supervisor-email supervisor@example.com \
+        --supervisor-password supervisor123 \
+        --email laure@example.com \
+        --full-name "Laure Monet" \
+        --role wearer \
+        --password laure123 \
+        --user-uid aez321e35az1
+
+Exemple ingest file : 
+python3 tools/ingest_file.py data/20260217_17_29_00

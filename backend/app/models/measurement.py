@@ -12,18 +12,17 @@ class Measurement(Base):
     device_id = Column(Integer, ForeignKey("devices.id"), nullable=False, index=True)
     timestamp = Column(DateTime, default=datetime.utcnow, index=True)
 
-    # 6 gases (ppm or ppb depending on gas — stored as raw float)
-    hcn = Column(Float, nullable=True)   # Cyanure d'hydrogène (ppm)
-    h2s = Column(Float, nullable=True)   # Sulfure d'hydrogène (ppm)
-    co = Column(Float, nullable=True)    # Monoxyde de carbone (ppm)
-    ch2o = Column(Float, nullable=True)  # formaldéhyde (ppm)
-    c3h4o = Column(Float, nullable=True) # Acroléine (ppm)
-    voc = Column(Float, nullable=True)   # Volatile Organic Compounds (ppm)
+    # 6 gases (ppm)
+    hcn = Column(Float, nullable=True)   # Cyanure d'hydrogène
+    h2s = Column(Float, nullable=True)   # Sulfure d'hydrogène
+    co = Column(Float, nullable=True)    # Monoxyde de carbone
+    ch2o = Column(Float, nullable=True)  # Formaldéhyde
+    c3h4o = Column(Float, nullable=True) # Acroléine
+    voc = Column(Float, nullable=True)   # Composés organiques volatils
 
     # Device telemetry
     battery_level = Column(Float, nullable=True)  # %
     signal_strength = Column(Float, nullable=True)  # dBm
-    log = Column(Text, nullable=True)
 
     # AI processing results
     risk_score = Column(Float, nullable=True)       # 0-100
@@ -31,3 +30,16 @@ class Measurement(Base):
 
     device = relationship("Device", back_populates="measurements")
     alerts = relationship("Alert", back_populates="measurement")
+
+
+class DeviceLog(Base):
+    """Operational log entry sent by a device via the gateway."""
+    __tablename__ = "device_logs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    device_id = Column(Integer, ForeignKey("devices.id"), nullable=False, index=True)
+    timestamp = Column(DateTime, nullable=False, index=True)
+    level = Column(String(10), nullable=False)   # "err", "wrn", "inf", "dbg"
+    message = Column(Text, nullable=False)
+
+    device = relationship("Device", back_populates="logs")

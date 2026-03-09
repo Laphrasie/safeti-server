@@ -27,6 +27,7 @@ def create_user(db: Session, user_in: UserCreate) -> User:
         full_name=user_in.full_name,
         role=user_in.role,
         supervisor_id=user_in.supervisor_id,
+        user_uid=user_in.user_uid,
     )
     db.add(user)
     db.commit()

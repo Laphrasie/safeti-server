@@ -85,16 +85,6 @@ export default function DeviceStatus({ device, latest }: Props) {
           </span>
         </div>
 
-        {latest?.log && (
-          <div className="mt-3 pt-3 border-t border-gray-800">
-            <p className="text-xs text-gray-600 uppercase tracking-wider mb-1">
-              Journal
-            </p>
-            <p className="text-xs text-gray-400 font-mono bg-gray-950 rounded p-2 truncate">
-              {latest.log}
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Online indicator */}

@@ -22,3 +22,4 @@ class Device(Base):
 
     measurements = relationship("Measurement", back_populates="device", cascade="all, delete-orphan")
     alerts = relationship("Alert", back_populates="device", cascade="all, delete-orphan")
+    logs = relationship("DeviceLog", back_populates="device", cascade="all, delete-orphan")

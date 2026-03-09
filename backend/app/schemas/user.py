@@ -13,12 +13,14 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str
     supervisor_id: Optional[int] = None
+    user_uid: Optional[str] = None
 
 
 class UserUpdate(BaseModel):
     full_name: Optional[str] = None
     is_active: Optional[bool] = None
     supervisor_id: Optional[int] = None
+    user_uid: Optional[str] = None
 
 
 class UserOut(UserBase):
@@ -26,6 +28,7 @@ class UserOut(UserBase):
     is_active: bool
     created_at: datetime
     supervisor_id: Optional[int] = None
+    user_uid: Optional[str] = None
 
     model_config = {"from_attributes": True}
 

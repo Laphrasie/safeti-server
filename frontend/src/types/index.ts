@@ -10,6 +10,7 @@ export interface User {
   is_active: boolean;
   created_at: string;
   supervisor_id: number | null;
+  user_uid: string | null;
 }
 
 export interface Device {
@@ -35,7 +36,6 @@ export interface Measurement {
   voc: number | null;
   battery_level: number | null;
   signal_strength: number | null;
-  log: string | null;
   risk_score: number | null;
   anomaly_detected: number | null;
 }

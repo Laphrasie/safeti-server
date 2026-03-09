@@ -106,12 +106,12 @@
             {"hcn": 25.838, "h2s": 39.970, "co": 32.086, "ch2o": 25.251, "c3h4o": 24.992, "voc": 40.314},
             {"hcn": 25.624, "h2s": 39.319, "co": 32.314, "ch2o": 25.023, "c3h4o": 25.516, "voc": 39.119},
             {"hcn": 24.822, "h2s": 38.459, "co": 30.947, "ch2o": 24.583, "c3h4o": 25.378, "voc": 37.994},
-            {"hcn": 25.157, "h2s": 38.468, "co": 30.788, "ch2o": 24.912, "c3h4o": 25.129, "voc": 37.348},
+            {"hcn": 25.157, "h2s": 38.468, "co": 30.788, "ch2o": 24.912, "c3h4o": 25.129, "voc": 37.348}
         ],
         "logs": [
             {"timestamp": "2026-03-08 18:01:00", "level": "err", "message": "Sensor temperature too high"},
             {"timestamp": "2026-03-10 14:52:30", "level": "wrn", "message": "Memory usage > 80%"},
-            {"timestamp": "2026-03-11 10:08:30", "level": "inf", "message": "Start data transfered to gateway"}
+            {"timestamp": "2026-03-11 10:08:30", "level": "inf", "message": "Start data transfered to gateway"},
             {"timestamp": "2026-03-12 06:22:30", "level": "dbg", "message": "BLE channel connected"}
         ]
     }

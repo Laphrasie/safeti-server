@@ -30,6 +30,9 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
+    # External string UID used by gateways (e.g. "aez321e35az1")
+    user_uid = Column(String, unique=True, nullable=True, index=True)
+
     # For wearers: supervisor_id points to their supervisor
     supervisor_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 

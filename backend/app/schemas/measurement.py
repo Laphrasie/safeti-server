@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
 
 
@@ -13,15 +13,45 @@ class GasReadings(BaseModel):
 
 
 class GatewayPayload(BaseModel):
-    """Payload sent by the BLE gateway to the server."""
+    """Legacy single-measurement payload sent by a BLE gateway."""
     device_uid: str
     gateway_id: str
     timestamp: Optional[datetime] = None
     measurements: GasReadings
     battery_level: Optional[float] = None
     signal_strength: Optional[float] = None
-    log: Optional[str] = None
 
+
+# ── File-format schemas (matches the JSON files produced by gateways) ──────────
+
+class GatewayFileMeasurement(BaseModel):
+    hcn: Optional[float] = None
+    h2s: Optional[float] = None
+    co: Optional[float] = None
+    ch2o: Optional[float] = None
+    c3h4o: Optional[float] = None
+    voc: Optional[float] = None
+
+
+class GatewayFileLog(BaseModel):
+    timestamp: datetime
+    level: str      # "err" | "wrn" | "inf" | "dbg"
+    message: str
+
+
+class GatewayFileEntry(BaseModel):
+    """One device block inside a gateway JSON file."""
+    gateway_id: str
+    user_id: str            # maps to User.user_uid
+    device_id: str          # maps to Device.device_uid
+    battery_lvl: Optional[float] = None
+    start_timestamp: datetime
+    interval_sec: int
+    measurements: List[GatewayFileMeasurement]
+    logs: List[GatewayFileLog] = []
+
+
+# ── Output schemas ──────────────────────────────────────────────────────────────
 
 class MeasurementOut(BaseModel):
     id: int
@@ -35,7 +65,6 @@ class MeasurementOut(BaseModel):
     voc: Optional[float] = None
     battery_level: Optional[float] = None
     signal_strength: Optional[float] = None
-    log: Optional[str] = None
     risk_score: Optional[float] = None
     anomaly_detected: Optional[int] = None
 
