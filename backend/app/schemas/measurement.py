@@ -4,12 +4,12 @@ from pydantic import BaseModel
 
 
 class GasReadings(BaseModel):
+    hcn: Optional[float] = None
+    h2s: Optional[float] = None
     co: Optional[float] = None
-    co2: Optional[float] = None
-    no2: Optional[float] = None
-    o3: Optional[float] = None
+    ch2o: Optional[float] = None
+    c3h4o: Optional[float] = None
     voc: Optional[float] = None
-    ch4: Optional[float] = None
 
 
 class GatewayPayload(BaseModel):
@@ -27,12 +27,12 @@ class MeasurementOut(BaseModel):
     id: int
     device_id: int
     timestamp: datetime
+    hcn: Optional[float] = None
+    h2s: Optional[float] = None
     co: Optional[float] = None
-    co2: Optional[float] = None
-    no2: Optional[float] = None
-    o3: Optional[float] = None
+    ch2o: Optional[float] = None
+    c3h4o: Optional[float] = None
     voc: Optional[float] = None
-    ch4: Optional[float] = None
     battery_level: Optional[float] = None
     signal_strength: Optional[float] = None
     log: Optional[str] = None

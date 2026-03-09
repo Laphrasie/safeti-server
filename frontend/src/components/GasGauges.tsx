@@ -31,12 +31,12 @@ function TrendIcon({ trend }: { trend?: string }) {
 }
 
 const DEFAULT_THRESHOLDS: Record<string, { warning: number; critical: number }> = {
-  co:  { warning: 25,   critical: 100  },
-  co2: { warning: 1000, critical: 5000 },
-  no2: { warning: 200,  critical: 1000 },
-  o3:  { warning: 100,  critical: 300  },
-  voc: { warning: 500,  critical: 2000 },
-  ch4: { warning: 1000, critical: 5000 },
+  hcn:  { warning: 25,   critical: 100  },
+  h2s: { warning: 1000, critical: 5000 },
+  co: { warning: 200,  critical: 1000 },
+  ch2o:  { warning: 100,  critical: 300  },
+  c3h4o: { warning: 500,  critical: 2000 },
+  voc: { warning: 1000, critical: 5000 },
 };
 
 export default function GasGauges({

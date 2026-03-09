@@ -12,19 +12,24 @@ from sqlalchemy.orm import Session
 from ..models.measurement import Measurement
 from ..models.alert import GasThreshold
 
-GAS_FIELDS = ["co", "co2", "no2", "o3", "voc", "ch4"]
+GAS_FIELDS = ["hcn", 
+              "h2s", 
+              "co", 
+              "ch2o", 
+              "c3h4o", 
+              "voc"]
 
 # Anomaly bit positions per gas (for the bitmask stored in measurement.anomaly_detected)
 GAS_BITS = {gas: (1 << i) for i, gas in enumerate(GAS_FIELDS)}
 
 # Default thresholds used if none are found in DB
 DEFAULT_THRESHOLDS = {
-    "co":  {"unit": "ppm",  "warning_level": 25.0,   "critical_level": 100.0},
-    "co2": {"unit": "ppm",  "warning_level": 1000.0, "critical_level": 5000.0},
-    "no2": {"unit": "ppb",  "warning_level": 200.0,  "critical_level": 1000.0},
-    "o3":  {"unit": "ppb",  "warning_level": 100.0,  "critical_level": 300.0},
-    "voc": {"unit": "ppb",  "warning_level": 500.0,  "critical_level": 2000.0},
-    "ch4": {"unit": "ppm",  "warning_level": 1000.0, "critical_level": 5000.0},
+    "hcn":  {"unit": "ppm",  "warning_level": 25.0,   "critical_level": 100.0},
+    "h2s": {"unit": "ppm",  "warning_level": 1000.0, "critical_level": 5000.0},
+    "co": {"unit": "ppm",  "warning_level": 200.0,  "critical_level": 1000.0},
+    "ch2o":  {"unit": "ppm",  "warning_level": 100.0,  "critical_level": 300.0},
+    "c3h4o": {"unit": "ppm",  "warning_level": 500.0,  "critical_level": 2000.0},
+    "voc": {"unit": "ppm",  "warning_level": 1000.0, "critical_level": 5000.0},
 }
 
 ROLLING_WINDOW = 100  # number of past measurements used for statistics

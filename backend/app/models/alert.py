@@ -19,7 +19,7 @@ class Alert(Base):
     measurement_id = Column(Integer, ForeignKey("measurements.id"), nullable=True)
     timestamp = Column(DateTime, default=datetime.utcnow, index=True)
 
-    gas_type = Column(String, nullable=False)   # co, co2, no2, o3, voc, ch4, risk
+    gas_type = Column(String, nullable=False)
     value = Column(Float, nullable=True)
     threshold = Column(Float, nullable=True)
     level = Column(Enum(AlertLevel), nullable=False)

@@ -102,7 +102,7 @@ def get_analysis(
         raise HTTPException(status_code=404, detail="Aucune mesure disponible")
 
     thresholds = get_thresholds(db)
-    gas_fields = ["co", "co2", "no2", "o3", "voc", "ch4"]
+    gas_fields = ["hcn", "h2s", "co", "ch2o", "c3h4o", "voc"]
     anomaly_flags = {}
     trends = {}
     recommendations = []

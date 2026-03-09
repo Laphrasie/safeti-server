@@ -13,12 +13,12 @@ class Measurement(Base):
     timestamp = Column(DateTime, default=datetime.utcnow, index=True)
 
     # 6 gases (ppm or ppb depending on gas — stored as raw float)
-    co = Column(Float, nullable=True)    # Carbon Monoxide (ppm)
-    co2 = Column(Float, nullable=True)   # Carbon Dioxide (ppm)
-    no2 = Column(Float, nullable=True)   # Nitrogen Dioxide (ppb)
-    o3 = Column(Float, nullable=True)    # Ozone (ppb)
-    voc = Column(Float, nullable=True)   # Volatile Organic Compounds (ppb)
-    ch4 = Column(Float, nullable=True)   # Methane (ppm)
+    hcn = Column(Float, nullable=True)   # Cyanure d'hydrogène (ppm)
+    h2s = Column(Float, nullable=True)   # Sulfure d'hydrogène (ppm)
+    co = Column(Float, nullable=True)    # Monoxyde de carbone (ppm)
+    ch2o = Column(Float, nullable=True)  # formaldéhyde (ppm)
+    c3h4o = Column(Float, nullable=True) # Acroléine (ppm)
+    voc = Column(Float, nullable=True)   # Volatile Organic Compounds (ppm)
 
     # Device telemetry
     battery_level = Column(Float, nullable=True)  # %

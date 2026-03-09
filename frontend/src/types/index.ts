@@ -27,12 +27,12 @@ export interface Measurement {
   id: number;
   device_id: number;
   timestamp: string;
+  hcn: number | null;
+  h2s: number | null;
   co: number | null;
-  co2: number | null;
-  no2: number | null;
-  o3: number | null;
+  ch2o: number | null;
+  c3h4o: number | null;
   voc: number | null;
-  ch4: number | null;
   battery_level: number | null;
   signal_strength: number | null;
   log: string | null;
@@ -84,10 +84,10 @@ export const GAS_META: Record<
   string,
   { label: string; unit: string; color: string }
 > = {
-  co:  { label: "CO",   unit: "ppm", color: "#f97316" },
-  co2: { label: "CO₂",  unit: "ppm", color: "#3b82f6" },
-  no2: { label: "NO₂",  unit: "ppb", color: "#a855f7" },
-  o3:  { label: "O₃",   unit: "ppb", color: "#06b6d4" },
-  voc: { label: "COV",  unit: "ppb", color: "#eab308" },
-  ch4: { label: "CH₄",  unit: "ppm", color: "#ec4899" },
+  hcn:  { label: "HCN",   unit: "ppm", color: "#f97316" },
+  h2s: { label: "H₂S",  unit: "ppm", color: "#3b82f6" },
+  co: { label: "CO",  unit:"ppm", color: "#a855f7" },
+  ch2o:  { label: "CH₂O",   unit: "ppm", color: "#06b6d4" },
+  c3h4o: { label: "C₃H₄O",  unit: "ppm", color: "#eab308" },
+  voc: { label: "VOC",  unit: "ppm", color: "#ec4899" },
 };
