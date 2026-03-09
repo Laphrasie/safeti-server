@@ -97,7 +97,6 @@ def _seed_initial_data():
     finally:
         db.close()
 
-
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket, token: str):
     """
@@ -110,14 +109,17 @@ async def websocket_endpoint(websocket: WebSocket, token: str):
         if not user_id:
             await websocket.close(code=4001)
             return
-    except Exception:
+        user_id = int(user_id)
+    except HTTPException:
+        await websocket.close(code=4001)
+        return
+    except (ValueError, TypeError):
         await websocket.close(code=4001)
         return
 
     await manager.connect(websocket, user_id)
     try:
         while True:
-            # Keep-alive: client can send pings
             data = await websocket.receive_text()
             if data == "ping":
                 await websocket.send_text("pong")

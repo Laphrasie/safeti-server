@@ -1,7 +1,7 @@
 import enum
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, Enum, DateTime, Boolean, ForeignKey, Table
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from ..database import Base
 
 # Association table: doctor <-> patient (wearer)
@@ -37,7 +37,11 @@ class User(Base):
     device = relationship("Device", back_populates="user", uselist=False)
 
     # Supervisor -> list of wearers they manage
-    workers = relationship("User", foreign_keys=[supervisor_id], backref="supervisor_rel")
+    workers = relationship(
+        "User",
+        foreign_keys=[supervisor_id],
+        backref=backref("supervisor_rel", remote_side=[id]),
+    )
 
     # Doctor <-> patients (many-to-many)
     patients = relationship(
